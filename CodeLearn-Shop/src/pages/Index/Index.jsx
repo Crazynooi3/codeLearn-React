@@ -7,6 +7,7 @@ import AboutUs from "../../components/AboutUs/AboutUs";
 import PopularCourses from "../../components/PopularCourses/PopularCourses";
 import PreSellCourses from "../../components/PreSellCourses/PreSellCourses";
 import Articles from "../../components/Articles/Articles";
+import TheFooter from "../../components/base/TheFooter/TheFooter";
 
 export default function index() {
   return (
@@ -17,6 +18,7 @@ export default function index() {
       <PopularCourses />
       <PreSellCourses />
       <Articles />
+      <TheFooter />
     </>
   );
 }
