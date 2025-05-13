@@ -8,9 +8,9 @@ export default function TheNavBar() {
         <div class="main-header__content">
           <div class="main-header__right">
             <img
-              src="images/logo/Logo.png"
+              src="/images/logo/Logo.png"
               class="main-header__logo"
-              alt="لوگوی سبزلرن"
+              alt="لوگوی کدلرن"
             />
 
             <ul class="main-header__menu">
@@ -143,7 +143,7 @@ export default function TheNavBar() {
               <i class="fas fa-shopping-cart main-header__cart-icon"></i>
             </a>
             <a href="#" class="main-header__profile">
-              <span class="main-header__profile-text">محمدامین سعیدی راد</span>
+              <span class="main-header__profile-text">احسان قناد</span>
             </a>
           </div>
         </div>
