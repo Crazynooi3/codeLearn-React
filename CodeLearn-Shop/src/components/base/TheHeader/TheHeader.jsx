@@ -3,6 +3,7 @@ import "./TheHeader.css";
 
 import TheTopBar from "../TheTopBar/TheTopBar";
 import TheNavBar from "../TheNavBar/TheNavBar";
+import Landing from "../../Landing/Landing";
 
 export default function TheHeader() {
   return (
@@ -10,6 +11,7 @@ export default function TheHeader() {
       <header class="header">
         <TheTopBar />
         <TheNavBar />
+        <Landing />
       </header>
     </>
   );
