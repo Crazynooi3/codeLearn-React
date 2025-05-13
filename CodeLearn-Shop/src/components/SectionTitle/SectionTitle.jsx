@@ -8,12 +8,14 @@ export default function SectionTitle({ title, text, btntext }) {
         <span class="courses-header__title title">{title}</span>
         <span class="courses-header__text">{text}</span>
       </div>
-      <div class="courses-header__left">
-        <a href="#" class="courses-header__link">
-          {btntext}
-          <i class="fas fa-arrow-left courses-header__icon"></i>
-        </a>
-      </div>
+      {btntext ? (
+        <div class="courses-header__left">
+          <a href="#" class="courses-header__link">
+            {btntext}
+            <i class="fas fa-arrow-left courses-header__icon"></i>
+          </a>
+        </div>
+      ) : null}
     </div>
   );
 }
