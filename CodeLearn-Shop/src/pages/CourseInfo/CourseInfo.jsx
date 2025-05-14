@@ -13,7 +13,17 @@ export default function CourseInfo() {
     <>
       <TheTopBar />
       <TheNavBar />
-      <Breadcrumb />
+      <Breadcrumb
+        link={[
+          { id: 1, title: "خانه", to: "/" },
+          { id: 2, title: "دوره فرانت اند", to: "/Category/frontend" },
+          {
+            id: 1,
+            title: "دوره مختصص جاوااسکریپت",
+            to: "/Course-Info/frontend",
+          },
+        ]}
+      />
       <Course />
       <MainCourseInfo />
       <TheFooter />
