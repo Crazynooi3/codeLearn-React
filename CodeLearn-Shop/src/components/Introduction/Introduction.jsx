@@ -30,7 +30,7 @@ export default function Introduction() {
           هدف از این دوره چیست؟ (تنها راه ورود به بازار کار و کسب درآمد)
         </span>
         <img
-          src="images/info/2.jpg"
+          src="/images/info/2.jpg"
           alt="course info image"
           class="introduction__img img-fluid"
         />
