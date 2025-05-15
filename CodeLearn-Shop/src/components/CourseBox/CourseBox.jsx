@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CourseBox.css";
 
 import { Link } from "react-router-dom";
+import CourseBoxSkeleton from "./CourseBoxSkeleton/CourseBoxSkeleton";
 
 export default function CourseBox({ Image, Title, Teacher, Users, Price }) {
+  const [isImgShow, setIsImgShow] = useState(false);
+
+  const onImageLoaded = () => setIsImgShow(true);
+
   return (
     <div class="col-4">
       <Link to={`/course-info/${Title}`}>
         <div class="course-box">
           <a href="#">
-            <img src={Image} alt="Course img" class="course-box__img" />
+            <img
+              src={Image}
+              alt="Course img"
+              class="course-box__img"
+              onLoad={onImageLoaded}
+            />
+            {!isImgShow && <CourseBoxSkeleton />}
           </a>
           <div class="course-box__main">
             <a href="#" class="course-box__title">
