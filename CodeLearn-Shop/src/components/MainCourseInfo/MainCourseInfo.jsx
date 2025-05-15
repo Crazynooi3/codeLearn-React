@@ -5,6 +5,7 @@ import StartCourseProgress from "../StartCourseProgress/StartCourseProgress";
 import Introduction from "../Introduction/Introduction";
 import TeacherDetails from "../TeacherDetails/TeacherDetails";
 import Sidebar from "../Sidebar/Sidebar";
+import Comments from "../Comments/Comments";
 
 export default function MainCourseInfo() {
   return (
@@ -30,6 +31,7 @@ export default function MainCourseInfo() {
               {/* <!-- Start Teacher Details --> */}
 
               <TeacherDetails />
+              <Comments />
 
               {/* <!-- Finish Teacher Details --> */}
             </div>
