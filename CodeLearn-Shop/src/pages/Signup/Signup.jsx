@@ -6,8 +6,13 @@ import TheTopBar from "../../components/base/TheTopBar/TheTopBar";
 import TheNavBar from "../../components/base/TheNavBar/TheNavBar";
 import TheFooter from "../../components/base/TheFooter/TheFooter";
 import Input from "../../components/Form/Input";
+import Btn from "../../components/Form/Btn";
 
 export default function Signup() {
+  const registerNewUser = (event) => {
+    event.preventDefault();
+    console.log("new register");
+  };
   return (
     <>
       <TheTopBar />
@@ -18,9 +23,9 @@ export default function Signup() {
           <span class="login__subtitle">خوشحالیم قراره به جمع ما بپیوندی</span>
           <div class="login__new-member">
             <span class="login__new-member-text">قبلا ثبت‌نام کرده‌اید؟ </span>
-            <Link class="login__new-member-link" to="/login">
+            <Btn className="login__new-member-link" to="/login">
               وارد شوید
-            </Link>
+            </Btn>
           </div>
           <form action="#" class="login-form">
             <div class="login-form__username">
@@ -50,10 +55,15 @@ export default function Signup() {
               />
               <i class="login-form__password-icon fa fa-lock-open"></i>
             </div>
-            <button class="login-form__btn" type="submit">
+            <Btn
+              className="login-form__btn"
+              type="submit"
+              disable={false}
+              onClick={registerNewUser}
+            >
               <i class="login-form__btn-icon fa fa-user-plus"></i>
               <span class="login-form__btn-text">عضویت</span>
-            </button>
+            </Btn>
           </form>
           <div class="login__des">
             <span class="login__des-title">سلام کاربر محترم:</span>

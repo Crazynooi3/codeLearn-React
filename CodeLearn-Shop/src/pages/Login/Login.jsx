@@ -6,8 +6,13 @@ import TheFooter from "../../components/base/TheFooter/TheFooter";
 import TheTopBar from "../../components/base/TheTopBar/TheTopBar";
 import TheNavBar from "../../components/base/TheNavBar/TheNavBar";
 import Input from "../../components/Form/Input";
+import Btn from "../../components/Form/Btn";
 
 export default function Login() {
+  const loginNewUser = (event) => {
+    event.preventDefault();
+    console.log("login New User");
+  };
   return (
     <>
       <TheTopBar />
@@ -21,9 +26,9 @@ export default function Login() {
           </span>
           <div class="login__new-member">
             <span class="login__new-member-text">کاربر جدید هستید؟</span>
-            <Link class="login__new-member-link" to="/signup">
+            <Btn to="/signup" className="login__new-member-link">
               ثبت نام
-            </Link>
+            </Btn>
           </div>
           <form action="#" class="login-form">
             <div class="login-form__username">
@@ -44,10 +49,19 @@ export default function Login() {
               />
               <i class="login-form__password-icon fa fa-lock-open"></i>
             </div>
-            <button class="login-form__btn" type="submit">
+            <Btn
+              className="login-form__btn"
+              type="submit"
+              disable={false}
+              onClick={loginNewUser}
+            >
               <i class="login-form__btn-icon fas fa-sign-out-alt"></i>
               <span class="login-form__btn-text">ورود</span>
-            </button>
+            </Btn>
+            {/* <button class="login-form__btn" type="submit">
+              <i class="login-form__btn-icon fas fa-sign-out-alt"></i>
+              <span class="login-form__btn-text">ورود</span>
+            </button> */}
             <div class="login-form__password-setting">
               <label class="login-form__password-remember">
                 <input class="login-form__password-checkbox" type="checkbox" />
