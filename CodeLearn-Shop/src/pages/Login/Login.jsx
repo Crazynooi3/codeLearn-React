@@ -88,7 +88,7 @@ export default function Login() {
             <Btn
               className="login-form__btn"
               type="submit"
-              disable={false}
+              disabled={!formState.isFormValid}
               onClick={loginNewUser}
             >
               <i class="login-form__btn-icon fas fa-sign-out-alt"></i>
