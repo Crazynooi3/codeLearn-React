@@ -1,14 +1,17 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import "./Input.css";
 
+import validateInput from "../../Validators/validateInput";
+
 export default function Input(props) {
-  const inputReducer = (state, action) => {
+  //  User Type somthing => fieldReducer for one field called from onChangeHandler
+  const fieldReducer = (state, action) => {
     switch (action.type) {
       case "CHANGE": {
         return {
           ...state,
           value: action.value,
-          isValid: action.isValid,
+          isValid: validateInput(action.value, action.validations).isValid,
         };
       }
 
@@ -18,14 +21,26 @@ export default function Input(props) {
     }
   };
 
-  const [mainInput, dispatch] = useReducer(inputReducer, {
+  // User Type somthing => inputState will Change ( value and isValid)
+  const [inputState, dispatch] = useReducer(fieldReducer, {
     value: "",
     isValid: false,
   });
 
+  const { value, isValid } = inputState;
+
+  const { id, onInputChange } = props;
+
+  useEffect(() => {
+    onInputChange(id, value, isValid);
+  }, [value]);
+
   const onChangeHandler = (event) => {
-    console.log(event.target.value);
-    dispatch({ type: "CHANGE", value: event.target.value, isValid: true });
+    dispatch({
+      type: "CHANGE",
+      value: event.target.value,
+      validations: props.validations,
+    });
   };
   const element =
     props.element === "input" ? (
@@ -33,16 +48,18 @@ export default function Input(props) {
         type={props.type}
         placeholder={props.placeholder}
         className={`${props.className} ${
-          mainInput.isValid === true ? "success" : "error"
+          inputState.isValid === true ? "success" : "error"
         }`}
-        value={mainInput.value}
+        value={inputState.value}
+        validations={props.validations}
         onChange={onChangeHandler}
       />
     ) : (
       <textarea
         placeholder={props.placeholder}
         className={props.className}
-        value={mainInput.value}
+        value={inputState.value}
+        validations={props.validations}
         onChange={onChangeHandler}
       />
     );

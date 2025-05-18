@@ -1,6 +1,13 @@
 import React from "react";
 import "./Signup.css";
 
+import {
+  requireRule,
+  minLengthRule,
+  maxLengthRule,
+  emailRule,
+} from "../../Validators/InputRules";
+
 import { Link } from "react-router-dom";
 import TheTopBar from "../../components/base/TheTopBar/TheTopBar";
 import TheNavBar from "../../components/base/TheNavBar/TheNavBar";
@@ -34,6 +41,11 @@ export default function Signup() {
                 type="text"
                 placeholder="نام کاربری"
                 className="login-form__username-input"
+                validations={[
+                  requireRule(),
+                  minLengthRule(8),
+                  maxLengthRule(20),
+                ]}
               />
               <i class="login-form__username-icon fa fa-user"></i>
             </div>
@@ -43,6 +55,7 @@ export default function Signup() {
                 type="email"
                 placeholder="آدرس ایمیل"
                 className="login-form__password-input"
+                validations={[requireRule(), emailRule()]}
               />
               <i class="login-form__password-icon fa fa-envelope"></i>
             </div>
@@ -52,6 +65,11 @@ export default function Signup() {
                 type="password"
                 placeholder="رمز عبور"
                 className="login-form__password-input"
+                validations={[
+                  requireRule(),
+                  minLengthRule(8),
+                  maxLengthRule(18),
+                ]}
               />
               <i class="login-form__password-icon fa fa-lock-open"></i>
             </div>

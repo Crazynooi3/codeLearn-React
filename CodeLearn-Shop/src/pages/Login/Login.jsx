@@ -1,7 +1,14 @@
 import React from "react";
 import "./Login.css";
 
-import { Link } from "react-router-dom";
+import {
+  requireRule,
+  minLengthRule,
+  maxLengthRule,
+} from "../../Validators/InputRules";
+
+import { useForm } from "../../Hooks/useForm";
+
 import TheFooter from "../../components/base/TheFooter/TheFooter";
 import TheTopBar from "../../components/base/TheTopBar/TheTopBar";
 import TheNavBar from "../../components/base/TheNavBar/TheNavBar";
@@ -9,9 +16,24 @@ import Input from "../../components/Form/Input";
 import Btn from "../../components/Form/Btn";
 
 export default function Login() {
+  const [formState, onInputChange] = useForm(
+    // use inputID for key of this object
+    {
+      username: {
+        value: "",
+        isValid: false,
+      },
+      password: {
+        value: "",
+        isValid: false,
+      },
+    },
+    false
+  );
+  console.log(formState);
+
   const loginNewUser = (event) => {
     event.preventDefault();
-    console.log("login New User");
   };
   return (
     <>
@@ -34,18 +56,32 @@ export default function Login() {
             <div class="login-form__username">
               <Input
                 element="input"
+                id={"username"}
                 type="text"
                 placeholder="نام کاربری یا آدرس ایمیل"
                 className="login-form__username-input"
+                validations={[
+                  requireRule(),
+                  minLengthRule(8),
+                  maxLengthRule(20),
+                ]}
+                onInputChange={onInputChange}
               />
               <i class="login-form__username-icon fa fa-user"></i>
             </div>
             <div class="login-form__password">
               <Input
                 element="input"
+                id={"password"}
                 type="password"
                 placeholder="رمز عبور"
                 className="login-form__password-input"
+                validations={[
+                  requireRule(),
+                  minLengthRule(8),
+                  maxLengthRule(20),
+                ]}
+                onInputChange={onInputChange}
               />
               <i class="login-form__password-icon fa fa-lock-open"></i>
             </div>
@@ -58,10 +94,7 @@ export default function Login() {
               <i class="login-form__btn-icon fas fa-sign-out-alt"></i>
               <span class="login-form__btn-text">ورود</span>
             </Btn>
-            {/* <button class="login-form__btn" type="submit">
-              <i class="login-form__btn-icon fas fa-sign-out-alt"></i>
-              <span class="login-form__btn-text">ورود</span>
-            </button> */}
+
             <div class="login-form__password-setting">
               <label class="login-form__password-remember">
                 <input class="login-form__password-checkbox" type="checkbox" />
