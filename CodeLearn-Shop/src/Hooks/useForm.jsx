@@ -23,6 +23,7 @@ const formStateReducer = (state, action) => {
           },
         },
         isFormValid: isFormValid,
+        // errors: action.errors,
       };
     }
 
@@ -36,14 +37,16 @@ export const useForm = (initInputs, initIsFormValid) => {
   const [formState, dispatch] = useReducer(formStateReducer, {
     inputs: initInputs,
     isFormValid: initIsFormValid,
+    // errors: [],
   });
 
-  const onInputChange = (id, value, isValid) => {
+  const onInputChange = (id, value, isValid, errors) => {
     dispatch({
       type: "UPDATE_INPUT",
       value,
       isValid,
       inputID: id,
+      // errors,
     });
   };
   return [formState, onInputChange];

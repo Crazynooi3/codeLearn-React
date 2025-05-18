@@ -99,9 +99,13 @@ export default function Signup() {
               <i class="login-form__password-icon fa fa-lock-open"></i>
             </div>
             <Btn
-              className="login-form__btn"
+              className={`login-form__btn ${
+                formState.isFormValid
+                  ? "login-form__btn_success"
+                  : "login-form__btn_disabled "
+              }`}
               type="submit"
-              disable={false}
+              disabled={!formState.isFormValid}
               onClick={registerNewUser}
             >
               <i class="login-form__btn-icon fa fa-user-plus"></i>

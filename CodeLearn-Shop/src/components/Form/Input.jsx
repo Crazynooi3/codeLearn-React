@@ -12,6 +12,7 @@ export default function Input(props) {
           ...state,
           value: action.value,
           isValid: validateInput(action.value, action.validations).isValid,
+          errors: validateInput(action.value, action.validations).errors,
         };
       }
 
@@ -25,14 +26,18 @@ export default function Input(props) {
   const [inputState, dispatch] = useReducer(fieldReducer, {
     value: "",
     isValid: false,
+    errors: [],
   });
 
-  const { value, isValid } = inputState;
+  // console.log(inputState);
+
+  const { value, isValid, errors } = inputState;
 
   const { id, onInputChange } = props;
 
   useEffect(() => {
-    onInputChange(id, value, isValid);
+    onInputChange(id, value, isValid, errors);
+    // console.log(errors);
   }, [value]);
 
   const onChangeHandler = (event) => {
@@ -40,6 +45,7 @@ export default function Input(props) {
       type: "CHANGE",
       value: event.target.value,
       validations: props.validations,
+      id: props.id,
     });
   };
   const element =
@@ -48,7 +54,7 @@ export default function Input(props) {
         type={props.type}
         placeholder={props.placeholder}
         className={`${props.className} ${
-          inputState.isValid === true ? "success" : "error"
+          errors.length > 0 ? "error" : isValid === true ? "success" : ""
         }`}
         value={inputState.value}
         validations={props.validations}
@@ -63,5 +69,17 @@ export default function Input(props) {
         onChange={onChangeHandler}
       />
     );
-  return <div>{element}</div>;
+  return (
+    <div>
+      {element}
+      {errors.length > 0 && (
+        <ul className="error_messages">
+          {errors.map((error, index) => (
+            <li key={index}>{`* ${error}`}</li>
+          ))}
+        </ul>
+      )}
+      {console.log(errors)}
+    </div>
+  );
 }
