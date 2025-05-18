@@ -86,7 +86,11 @@ export default function Login() {
               <i class="login-form__password-icon fa fa-lock-open"></i>
             </div>
             <Btn
-              className="login-form__btn"
+              className={`login-form__btn ${
+                formState.isFormValid
+                  ? "login-form__btn_success"
+                  : "login-form__btn_disabled "
+              }`}
               type="submit"
               disabled={!formState.isFormValid}
               onClick={loginNewUser}
