@@ -7,8 +7,8 @@ import {
   maxLengthRule,
   emailRule,
 } from "../../Validators/InputRules";
+import { useForm } from "../../Hooks/useForm";
 
-import { Link } from "react-router-dom";
 import TheTopBar from "../../components/base/TheTopBar/TheTopBar";
 import TheNavBar from "../../components/base/TheNavBar/TheNavBar";
 import TheFooter from "../../components/base/TheFooter/TheFooter";
@@ -16,6 +16,25 @@ import Input from "../../components/Form/Input";
 import Btn from "../../components/Form/Btn";
 
 export default function Signup() {
+  const [formState, onInputChange] = useForm(
+    {
+      username: {
+        value: "",
+        isValid: false,
+      },
+      password: {
+        value: "",
+        isValid: false,
+      },
+      email: {
+        value: "",
+        isValid: false,
+      },
+    },
+    false
+  );
+  console.log(formState);
+
   const registerNewUser = (event) => {
     event.preventDefault();
     console.log("new register");
@@ -38,6 +57,7 @@ export default function Signup() {
             <div class="login-form__username">
               <Input
                 element="input"
+                id="username"
                 type="text"
                 placeholder="نام کاربری"
                 className="login-form__username-input"
@@ -46,6 +66,7 @@ export default function Signup() {
                   minLengthRule(8),
                   maxLengthRule(20),
                 ]}
+                onInputChange={onInputChange}
               />
               <i class="login-form__username-icon fa fa-user"></i>
             </div>
@@ -53,15 +74,18 @@ export default function Signup() {
               <Input
                 element="input"
                 type="email"
+                id="email"
                 placeholder="آدرس ایمیل"
                 className="login-form__password-input"
                 validations={[requireRule(), emailRule()]}
+                onInputChange={onInputChange}
               />
               <i class="login-form__password-icon fa fa-envelope"></i>
             </div>
             <div class="login-form__password">
               <Input
                 element="input"
+                id="password"
                 type="password"
                 placeholder="رمز عبور"
                 className="login-form__password-input"
@@ -70,6 +94,7 @@ export default function Signup() {
                   minLengthRule(8),
                   maxLengthRule(18),
                 ]}
+                onInputChange={onInputChange}
               />
               <i class="login-form__password-icon fa fa-lock-open"></i>
             </div>

@@ -1,16 +1,10 @@
 import inputRouls from "./InputRules";
-// console.log(inputRouls);
+import Regex from "./Regex";
 
 const validateInput = (value, rules) => {
-  //   console.log("validator =>", value, validations);
-
   let errors = [];
 
   for (const rule of rules) {
-    // console.log(rule.type);
-    // console.log(inputRouls.REQUIRED);
-    // console.log(errors);
-
     if (rule.type === inputRouls.REQUIRED) {
       if (value.trim().length === 0) {
         errors.push("فیلد اجباری است");
@@ -27,12 +21,12 @@ const validateInput = (value, rules) => {
       }
     }
     if (rule.type === inputRouls.EMAIL) {
-      if (!value.trim().includes("@")) {
+      if (!Regex.regexEmail(value)) {
         errors.push("ایمیل نامعتبر است");
       }
     }
   }
-  //   console.log(validationRouls);
+
   return {
     isValid: errors.length === 0,
     errors,
