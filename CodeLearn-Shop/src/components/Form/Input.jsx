@@ -11,8 +11,18 @@ export default function Input(props) {
         return {
           ...state,
           value: action.value,
-          isValid: validateInput(action.value, action.validations).isValid,
-          errors: validateInput(action.value, action.validations).errors,
+          isValid: validateInput(
+            action.value,
+            action.validations,
+            props.formState,
+            props.id
+          ).isValid,
+          errors: validateInput(
+            action.value,
+            action.validations,
+            props.formState,
+            props.id
+          ).errors,
         };
       }
 
@@ -32,7 +42,6 @@ export default function Input(props) {
   // console.log(inputState);
 
   const { value, isValid, errors } = inputState;
-
   const { id, onInputChange } = props;
 
   useEffect(() => {
@@ -54,10 +63,10 @@ export default function Input(props) {
         type={props.type}
         placeholder={props.placeholder}
         className={`${props.className} ${
-          errors.length > 0 ? "error" : isValid === true ? "success" : ""
+          errors.length > 0 ? "error" : isValid ? "success" : ""
         }`}
         value={inputState.value}
-        validations={props.validations}
+        // validations={props.validations}
         onChange={onChangeHandler}
       />
     ) : (
@@ -65,7 +74,7 @@ export default function Input(props) {
         placeholder={props.placeholder}
         className={props.className}
         value={inputState.value}
-        validations={props.validations}
+        // validations={props.validations}
         onChange={onChangeHandler}
       />
     );
@@ -79,7 +88,7 @@ export default function Input(props) {
           ))}
         </ul>
       )}
-      {console.log(errors)}
+      {/* {console.log(errors)} */}
     </div>
   );
 }

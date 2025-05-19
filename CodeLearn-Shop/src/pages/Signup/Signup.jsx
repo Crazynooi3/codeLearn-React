@@ -6,6 +6,7 @@ import {
   minLengthRule,
   maxLengthRule,
   emailRule,
+  confirmPasswordRule,
 } from "../../Validators/InputRules";
 import { useForm } from "../../Hooks/useForm";
 
@@ -18,27 +19,41 @@ import Btn from "../../components/Form/Btn";
 export default function Signup() {
   const [formState, onInputChange] = useForm(
     {
+      name: {
+        value: "",
+        isValid: false,
+        errors: [],
+      },
       username: {
         value: "",
         isValid: false,
+        errors: [],
       },
       password: {
         value: "",
         isValid: false,
+        errors: [],
+      },
+      confirmPassword: {
+        value: "",
+        isValid: false,
+        errors: [],
       },
       email: {
         value: "",
         isValid: false,
+        errors: [],
       },
     },
     false
   );
-  console.log(formState);
 
   const registerNewUser = (event) => {
     event.preventDefault();
     console.log("new register");
   };
+  // console.log(formState.inputs.password.errors);
+
   return (
     <>
       <TheTopBar />
@@ -57,6 +72,25 @@ export default function Signup() {
             <div class="login-form__username">
               <Input
                 element="input"
+                id="name"
+                type="text"
+                placeholder="نام و نام خانوادگی"
+                className="login-form__username-input"
+                validations={[
+                  requireRule(),
+                  minLengthRule(8),
+                  maxLengthRule(20),
+                ]}
+                onInputChange={onInputChange}
+                formState={formState}
+                errors={formState.inputs.name.errors}
+              />
+              <i class="login-form__username-icon fa fa-user"></i>
+            </div>
+
+            <div class="login-form__username">
+              <Input
+                element="input"
                 id="username"
                 type="text"
                 placeholder="نام کاربری"
@@ -67,9 +101,12 @@ export default function Signup() {
                   maxLengthRule(20),
                 ]}
                 onInputChange={onInputChange}
+                formState={formState} // پاس دادن formState
+                errors={formState.inputs.username.errors}
               />
               <i class="login-form__username-icon fa fa-user"></i>
             </div>
+
             <div class="login-form__password">
               <Input
                 element="input"
@@ -79,6 +116,8 @@ export default function Signup() {
                 className="login-form__password-input"
                 validations={[requireRule(), emailRule()]}
                 onInputChange={onInputChange}
+                formState={formState} // پاس دادن formState
+                errors={formState.inputs.email.errors}
               />
               <i class="login-form__password-icon fa fa-envelope"></i>
             </div>
@@ -95,6 +134,27 @@ export default function Signup() {
                   maxLengthRule(18),
                 ]}
                 onInputChange={onInputChange}
+                formState={formState}
+                errors={formState.inputs.password.errors}
+              />
+              <i class="login-form__password-icon fa fa-lock-open"></i>
+            </div>
+            <div class="login-form__password">
+              <Input
+                element="input"
+                id="confirmPassword"
+                type="password"
+                placeholder="تکرار رمزعبور"
+                className="login-form__password-input"
+                validations={[
+                  requireRule(),
+                  minLengthRule(8),
+                  maxLengthRule(18),
+                  confirmPasswordRule(),
+                ]}
+                onInputChange={onInputChange}
+                formState={formState}
+                errors={formState.inputs.confirmPassword.errors}
               />
               <i class="login-form__password-icon fa fa-lock-open"></i>
             </div>

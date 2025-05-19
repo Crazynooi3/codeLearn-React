@@ -1,7 +1,7 @@
 import inputRouls from "./InputRules";
 import Regex from "./Regex";
 
-const validateInput = (value, rules) => {
+const validateInput = (value, rules, formState, inputId) => {
   let errors = [];
 
   for (const rule of rules) {
@@ -23,6 +23,15 @@ const validateInput = (value, rules) => {
     if (rule.type === inputRouls.EMAIL) {
       if (!Regex.regexEmail(value)) {
         errors.push("ایمیل نامعتبر است");
+      }
+    }
+    if (
+      rule.type === inputRouls.CONFIRM_PASSWORD &&
+      inputId === "confirmPassword"
+    ) {
+      const passwordValue = formState?.inputs?.password?.value || "";
+      if (value !== passwordValue) {
+        errors.push("تکرار رمز عبور با رمز عبور مطابقت ندارد");
       }
     }
   }
