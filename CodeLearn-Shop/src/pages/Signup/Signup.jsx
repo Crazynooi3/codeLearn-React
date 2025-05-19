@@ -50,6 +50,25 @@ export default function Signup() {
 
   const registerNewUser = (event) => {
     event.preventDefault();
+
+    const newUserData = {
+      name: formState.inputs.name.value,
+      username: formState.inputs.username.value,
+      email: formState.inputs.email.value,
+      password: formState.inputs.password.value,
+      confirmPassword: formState.inputs.confirmPassword.value,
+    };
+
+    fetch("http://localhost:3000/v1/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newUserData),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+
     console.log("new register");
   };
   // console.log(formState.inputs.password.errors);
@@ -146,12 +165,7 @@ export default function Signup() {
                 type="password"
                 placeholder="تکرار رمزعبور"
                 className="login-form__password-input"
-                validations={[
-                  requireRule(),
-                  minLengthRule(8),
-                  maxLengthRule(18),
-                  confirmPasswordRule(),
-                ]}
+                validations={[requireRule(), confirmPasswordRule()]}
                 onInputChange={onInputChange}
                 formState={formState}
                 errors={formState.inputs.confirmPassword.errors}
