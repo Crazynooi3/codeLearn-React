@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useRoutes } from "react-router-dom";
 import routes from "./routes";
+import AuthContext from "./contexts/authContext";
 
 import "./Style/reset.css";
 import "./Style/fonts.css";
@@ -10,8 +11,36 @@ import "./Style/helpers.css";
 
 function App() {
   const router = useRoutes(routes);
+  const [isLogin, setIsLogin] = useState(null);
+  const [token, setToken] = useState(null);
+  const [userInfos, setUserInfos] = useState(null);
 
-  return <>{router}</>;
+  const login = (userInfos, token) => {
+    setToken(token);
+    setIsLogin(true);
+    setUserInfos(userInfos);
+    localStorage.setItem("token", JSON.stringify({ token }));
+  };
+
+  const logout = () => {
+    setToken(null);
+    setUserInfos({});
+    localStorage.removeItem("token");
+  };
+
+  return (
+    <AuthContext.Provider
+      value={{
+        isLogedin: isLogin,
+        token: token,
+        userInfos: userInfos,
+        login,
+        logout,
+      }}
+    >
+      {router}
+    </AuthContext.Provider>
+  );
 }
 
 export default App;

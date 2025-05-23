@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Signup.css";
 
 import {
@@ -9,6 +9,7 @@ import {
   confirmPasswordRule,
 } from "../../Validators/InputRules";
 import { useForm } from "../../Hooks/useForm";
+import AuthContext from "../../contexts/authContext";
 
 import TheTopBar from "../../components/base/TheTopBar/TheTopBar";
 import TheNavBar from "../../components/base/TheNavBar/TheNavBar";
@@ -17,6 +18,9 @@ import Input from "../../components/Form/Input";
 import Btn from "../../components/Form/Btn";
 
 export default function Signup() {
+  const authContext = useContext(AuthContext);
+  console.log(authContext);
+
   const [formState, onInputChange] = useForm(
     {
       name: {
@@ -67,9 +71,9 @@ export default function Signup() {
       body: JSON.stringify(newUserData),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => authContext.login(data.user, data.accessToken));
 
-    console.log("new register");
+    // console.log("new register Token:", data.accessToken);
   };
   // console.log(formState.inputs.password.errors);
 

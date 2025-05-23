@@ -2,7 +2,7 @@ import { useReducer } from "react";
 import validateInput from "../Validators/validateInput";
 
 const formStateReducer = (state, action) => {
-  console.log(state.inputs[action.inputID]);
+  // console.log(state.inputs[action.inputID]);
 
   switch (action.type) {
     case "UPDATE_INPUT": {
@@ -39,7 +39,7 @@ export const useForm = (initInputs, initIsFormValid) => {
     isFormValid: initIsFormValid,
     // errors: [],
   });
-  console.log(formState);
+  // console.log(formState);
 
   const onInputChange = (id, value, isValid, errors) => {
     dispatch({
