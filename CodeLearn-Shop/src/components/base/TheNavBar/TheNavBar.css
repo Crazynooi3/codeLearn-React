@@ -137,4 +137,9 @@
   }
   
   /* Finish Navbar Styles */
+
+
+  .main-header__item > div {
+    cursor: pointer;
+  }
   
