@@ -102,7 +102,7 @@ export default function Signup() {
                 id="name"
                 type="text"
                 placeholder="نام و نام خانوادگی"
-                classNameName="login-form__username-input"
+                className="login-form__username-input"
                 validations={[
                   requireRule(),
                   minLengthRule(8),
@@ -121,7 +121,7 @@ export default function Signup() {
                 id="username"
                 type="text"
                 placeholder="نام کاربری"
-                classNameName="login-form__username-input"
+                className="login-form__username-input"
                 validations={[
                   requireRule(),
                   minLengthRule(8),
@@ -140,7 +140,7 @@ export default function Signup() {
                 type="email"
                 id="email"
                 placeholder="آدرس ایمیل"
-                classNameName="login-form__password-input"
+                className="login-form__password-input"
                 validations={[requireRule(), emailRule()]}
                 onInputChange={onInputChange}
                 formState={formState} // پاس دادن formState
@@ -154,7 +154,7 @@ export default function Signup() {
                 id="password"
                 type="password"
                 placeholder="رمز عبور"
-                classNameName="login-form__password-input"
+                className="login-form__password-input"
                 validations={[
                   requireRule(),
                   minLengthRule(8),
@@ -172,7 +172,7 @@ export default function Signup() {
                 id="confirmPassword"
                 type="password"
                 placeholder="تکرار رمزعبور"
-                classNameName="login-form__password-input"
+                className="login-form__password-input"
                 validations={[requireRule(), confirmPasswordRule()]}
                 onInputChange={onInputChange}
                 formState={formState}
@@ -181,7 +181,7 @@ export default function Signup() {
               <i className="login-form__password-icon fa fa-lock-open"></i>
             </div>
             <Btn
-              classNameName={`login-form__btn ${
+              className={`login-form__btn ${
                 formState.isFormValid
                   ? "login-form__btn_success"
                   : "login-form__btn_disabled "
