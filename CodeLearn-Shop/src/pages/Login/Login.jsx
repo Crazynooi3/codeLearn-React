@@ -34,6 +34,21 @@ export default function Login() {
 
   const loginNewUser = (event) => {
     event.preventDefault();
+
+    let userData = {
+      identifier: formState.inputs.username.value,
+      password: formState.inputs.password.value,
+    };
+    fetch("http://localhost:3000/v1/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    })
+      .then((res) => res.json())
+      .then((data) => authContext.login(data.user, data.accessToken));
+    // .then((data) => console.log(data));
   };
   return (
     <>

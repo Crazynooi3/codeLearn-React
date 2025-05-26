@@ -21,6 +21,7 @@ function App() {
     setUserInfos(userInfos);
     localStorage.setItem("token", JSON.stringify({ token }));
   }, []);
+
   useEffect(() => {
     const userToken = JSON.parse(localStorage.getItem("token"));
     if (userToken) {
