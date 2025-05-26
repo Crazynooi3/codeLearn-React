@@ -72,10 +72,7 @@ export default function Signup() {
     })
       .then((res) => res.json())
       .then((data) => authContext.login(data.user, data.accessToken));
-
-    // console.log("new register Token:", data.accessToken);
   };
-  // console.log(formState.inputs.password.errors);
 
   return (
     <>
