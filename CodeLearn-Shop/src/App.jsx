@@ -11,7 +11,7 @@ import "./Style/helpers.css";
 
 function App() {
   const router = useRoutes(routes);
-  const [isLogin, setIsLogin] = useState(null);
+  const [isLogin, setIsLogin] = useState(false);
   const [token, setToken] = useState(null);
   const [userInfos, setUserInfos] = useState(null);
 
