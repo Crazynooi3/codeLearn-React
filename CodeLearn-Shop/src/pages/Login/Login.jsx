@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 import {
@@ -8,6 +9,7 @@ import {
 } from "../../Validators/InputRules";
 
 import { useForm } from "../../Hooks/useForm";
+import AuthContext from "../../contexts/authContext";
 
 import TheFooter from "../../components/base/TheFooter/TheFooter";
 import TheTopBar from "../../components/base/TheTopBar/TheTopBar";
@@ -16,21 +18,27 @@ import Input from "../../components/Form/Input";
 import Btn from "../../components/Form/Btn";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const authContext = useContext(AuthContext);
+
   const [formState, onInputChange] = useForm(
     // use inputID for key of this object
     {
       username: {
         value: "",
         isValid: false,
+        errors: [],
       },
       password: {
         value: "",
         isValid: false,
+        errors: [],
       },
     },
     false
   );
-  console.log(formState);
+
+  console.log(authContext);
 
   const loginNewUser = (event) => {
     event.preventDefault();
@@ -47,7 +55,16 @@ export default function Login() {
       body: JSON.stringify(userData),
     })
       .then((res) => res.json())
-      .then((data) => authContext.login(data.user, data.accessToken));
+      .then((data) => {
+        if (data.accessToken) {
+          authContext.login(data.user, data.accessToken);
+          navigate("/");
+        } else {
+          console.log(data);
+        }
+      })
+      .catch((err) => console.log(err));
+
     // .then((data) => console.log(data));
   };
   return (
