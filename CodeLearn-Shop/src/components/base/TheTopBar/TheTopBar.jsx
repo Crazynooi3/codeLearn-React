@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./TheTopBar.css";
 
 export default function TheTopBar() {
@@ -25,9 +26,9 @@ export default function TheTopBar() {
             <ul className="top-bar__menu">
               {getRandomLinkFromArray(topBarLinks, 7).map((link) => (
                 <li className="top-bar__item">
-                  <a href="#" className="top-bar__link">
+                  <Link to={link.href} href="#" className="top-bar__link">
                     {link.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
