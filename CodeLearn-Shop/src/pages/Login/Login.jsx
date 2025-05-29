@@ -57,6 +57,8 @@ export default function Login() {
       .then((res) => res.json())
       .then((data) => {
         if (data.accessToken) {
+          console.log(data);
+
           authContext.login(data.user, data.accessToken);
           navigate("/");
         } else {

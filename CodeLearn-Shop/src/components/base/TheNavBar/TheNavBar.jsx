@@ -3,7 +3,7 @@ import "./TheNavBar.css";
 import { Link } from "react-router-dom";
 
 export default function TheNavBar(props) {
-  console.log(props);
+  // console.log(props);
 
   return (
     <div className="main-header">

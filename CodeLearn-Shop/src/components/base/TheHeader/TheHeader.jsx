@@ -9,6 +9,7 @@ import Landing from "../../Landing/Landing";
 
 export default function TheHeader() {
   const authContext = useContext(AuthContext);
+  console.log(authContext);
 
   return (
     <>
