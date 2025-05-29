@@ -13,7 +13,7 @@ function App() {
   const router = useRoutes(routes);
   const [isLogin, setIsLogin] = useState(false);
   const [token, setToken] = useState(null);
-  const [userInfos, setUserInfos] = useState(null);
+  const [userInfos, setUserInfos] = useState({});
 
   const login = useCallback((userInfos, token) => {
     setToken(token);

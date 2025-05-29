@@ -1,17 +1,22 @@
 import React from "react";
 import "./TheNavBar.css";
+import { Link } from "react-router-dom";
 
-export default function TheNavBar() {
+export default function TheNavBar(props) {
+  console.log(props);
+
   return (
     <div className="main-header">
       <div className="container-fluid">
         <div className="main-header__content">
           <div className="main-header__right">
-            <img
-              src="/images/logo/Logo.png"
-              className="main-header__logo"
-              alt="لوگوی کدلرن"
-            />
+            <a href="/">
+              <img
+                src="/images/logo/Logo.png"
+                className="main-header__logo"
+                alt="لوگوی کدلرن"
+              />
+            </a>
 
             <ul className="main-header__menu">
               <li className="main-header__item">
@@ -142,9 +147,15 @@ export default function TheNavBar() {
             <a href="#" className="main-header__cart-btn">
               <i className="fas fa-shopping-cart main-header__cart-icon"></i>
             </a>
-            <a href="#" className="main-header__profile">
-              <span className="main-header__profile-text">احسان قناد</span>
-            </a>
+            {props.islogin ? (
+              <a href="#" className="main-header__profile">
+                <span className="main-header__profile-text">{props.name}</span>
+              </a>
+            ) : (
+              <Link to={"/login"} href="#" className="main-header__profile">
+                <span className="main-header__profile-text">ورود/ثبت نام</span>
+              </Link>
+            )}
           </div>
         </div>
       </div>
