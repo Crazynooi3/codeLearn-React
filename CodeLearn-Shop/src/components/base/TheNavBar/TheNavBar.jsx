@@ -12,7 +12,8 @@ export default function TheNavBar(props) {
           <div className="main-header__right">
             <a href="/">
               <img
-                src="/images/logo/Logo.png"
+                width={"150px"}
+                src="/images/logo/CodeLearnLogo.png"
                 className="main-header__logo"
                 alt="لوگوی کدلرن"
               />
