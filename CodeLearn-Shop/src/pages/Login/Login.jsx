@@ -1,5 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
+
 import "./Login.css";
 
 import {
@@ -20,6 +22,7 @@ import Btn from "../../components/Form/Btn";
 export default function Login() {
   const navigate = useNavigate();
   const authContext = useContext(AuthContext);
+  const [isCaptcha, setIsCaptcha] = useState(false);
 
   const [formState, onInputChange] = useForm(
     // use inputID for key of this object
@@ -38,7 +41,7 @@ export default function Login() {
     false
   );
 
-  console.log(authContext);
+  // console.log(authContext);
 
   const loginNewUser = (event) => {
     event.preventDefault();
@@ -66,8 +69,10 @@ export default function Login() {
         }
       })
       .catch((err) => console.log(err));
+  };
 
-    // .then((data) => console.log(data));
+  const onChangeHandler = () => {
+    setIsCaptcha(true);
   };
   return (
     <>
@@ -119,9 +124,14 @@ export default function Login() {
               />
               <i class="login-form__password-icon fa fa-lock-open"></i>
             </div>
+            <ReCAPTCHA
+              sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+              onChange={onChangeHandler}
+            />
+            ,
             <Btn
               className={`login-form__btn ${
-                formState.isFormValid
+                formState.isFormValid && isCaptcha
                   ? "login-form__btn_success"
                   : "login-form__btn_disabled "
               }`}
@@ -132,7 +142,6 @@ export default function Login() {
               <i class="login-form__btn-icon fas fa-sign-out-alt"></i>
               <span class="login-form__btn-text">ورود</span>
             </Btn>
-
             <div class="login-form__password-setting">
               <label class="login-form__password-remember">
                 <input class="login-form__password-checkbox" type="checkbox" />
