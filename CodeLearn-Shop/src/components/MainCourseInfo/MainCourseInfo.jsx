@@ -37,7 +37,7 @@ export default function MainCourseInfo({ data }) {
             </div>
           </div>
 
-          <Sidebar />
+          <Sidebar data={data} />
         </div>
       </div>
     </main>

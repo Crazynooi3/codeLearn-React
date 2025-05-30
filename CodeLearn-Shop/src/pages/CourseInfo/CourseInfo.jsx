@@ -16,14 +16,17 @@ export default function CourseInfo() {
   const [sessions, setSessions] = useState([]);
 
   const { courseName } = useParams();
-  const userToken = localStorage.getItem("token");
+  // const userToken = localStorage.getItem("token");
   // console.log(courseInfo);
 
   useEffect(() => {
+    const localStorageData = localStorage.getItem("token");
     fetch(`http://localhost:3000/v1/courses/${courseName}`, {
       method: "POST",
       headers: {
-        Authorization: `Beare ${userToken}`,
+        Authorization: `Beare ${
+          localStorageData === null ? null : localStorageData
+        }`,
       },
     })
       .then((res) => res.json())

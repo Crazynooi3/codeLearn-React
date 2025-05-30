@@ -1,17 +1,28 @@
 import React from "react";
 import "./Sidebar.css";
 
-export default function Sidebar() {
+export default function Sidebar({ data }) {
+  console.log(data.isUserRegisteredToThisCourse);
+
   return (
     <div class="col-4">
       <div class="courses-info">
         <div class="course-info">
-          <div class="course-info__register">
-            <span class="course-info__register-title">
-              <i class="fas fa-graduation-cap course-info__register-icon"></i>
-              دانشجوی دوره هستید
-            </span>
-          </div>
+          {data.isUserRegisteredToThisCourse ? (
+            <div class="course-info__register">
+              <span class="course-info__register-title">
+                <i class="fas fa-graduation-cap course-info__register-icon"></i>
+                دانشجوی دوره هستید
+              </span>
+            </div>
+          ) : (
+            <div class="course-info__register">
+              <span class="course-info__register-title">
+                <i class="fas fa-graduation-cap course-info__register-icon"></i>
+                ثبت نام در دوره
+              </span>
+            </div>
+          )}
         </div>
         <div class="course-info">
           <div class="course-info__total">
