@@ -57,7 +57,7 @@ export default function CourseInfo() {
         description={courseInfo?.description || ""}
         image={courseInfo?.cover}
       />
-      <MainCourseInfo />
+      <MainCourseInfo data={courseInfo} />
       <TheFooter />
     </>
   );

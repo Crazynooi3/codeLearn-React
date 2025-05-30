@@ -7,7 +7,7 @@ import TeacherDetails from "../TeacherDetails/TeacherDetails";
 import Sidebar from "../Sidebar/Sidebar";
 import Comments from "../Comments/Comments";
 
-export default function MainCourseInfo() {
+export default function MainCourseInfo({ data }) {
   return (
     <main class="main">
       <div class="container">
@@ -15,7 +15,7 @@ export default function MainCourseInfo() {
           <div class="col-8">
             <div class="course">
               {/* <!-- Start Course Boxes --> */}
-              <MainCourseBox />
+              <MainCourseBox data={data} />
               {/* <!-- Finish Course Boxes --> */}
 
               {/* <!-- Start Course Progress --> */}

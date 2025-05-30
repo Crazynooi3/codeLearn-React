@@ -1,22 +1,19 @@
 import React from "react";
 import "./MainCourseBox.css";
+import CourseBoxes from "../CourseBox/CourseBoxes";
 
-export default function MainCourseBox() {
+export default function MainCourseBox({ data }) {
+  console.log(data);
+
   return (
     <div class="course-boxes">
       <div class="row">
         <div class="col-4">
-          <div class="course-boxes__box">
-            <div class="course-boxes__box-right">
-              <i class="course-boxes__box-right-icon fas fa-graduation-cap"></i>
-            </div>
-            <div class="course-boxes__box-left">
-              <span class="course-boxes__box-left-title">وضعیت دوره:</span>
-              <span class="course-boxes__box-left--subtitle">
-                به اتمام رسیده
-              </span>
-            </div>
-          </div>
+          <CourseBoxes
+            icon={"fa-solid fa-graduation-cap"}
+            title={"وضعیت دوره :"}
+            subtitle={"به اتمام رسیده"}
+          />
         </div>
         <div class="col-4">
           <div class="course-boxes__box">
