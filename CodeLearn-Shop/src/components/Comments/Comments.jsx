@@ -2,14 +2,12 @@ import React from "react";
 import "./Comments";
 
 export default function Comments() {
+  const addComment = () => {};
   return (
     <div class="comments">
+      <br />
       <span class="comments__title">دیدگاهتان را بنویسید</span>
-      <span class="comments__text">
-        <a href="#">با عنوان محمدامین سعیدی راد وارد شده اید.</a>
-        <a href="#">خارج میشوید? </a>
-        بخش های موردنیاز علامت گذاری شده اند *
-      </span>
+
       <div class="comments_content">
         <span class="comments__content-title">دیدگاه *</span>
         <textarea class="comments__content-textarea"></textarea>
