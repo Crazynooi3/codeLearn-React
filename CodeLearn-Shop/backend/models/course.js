@@ -14,8 +14,16 @@ const schema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    support: {
+      type: String,
+      required: false,
+    },
     shortName: {
       type: String,
+      required: true,
+    },
+    isComplete: {
+      type: Number,
       required: true,
     },
     categoryID: {
@@ -33,6 +41,12 @@ const schema = new mongoose.Schema(
 
 schema.virtual("sessions", {
   ref: "Session",
+  localField: "_id",
+  foreignField: "course",
+});
+
+schema.virtual("comments", {
+  ref: "Comment",
   localField: "_id",
   foreignField: "course",
 });

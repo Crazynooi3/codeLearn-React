@@ -16,14 +16,16 @@ function App() {
   const [userInfos, setUserInfos] = useState({});
 
   const login = useCallback((userInfos, token) => {
+    // console.log(token);
+
     setToken(token);
     setIsLogin(true);
     setUserInfos(userInfos);
-    localStorage.setItem("token", JSON.stringify(token));
+    localStorage.setItem("token", token);
   }, []);
 
   useEffect(() => {
-    const userToken = JSON.parse(localStorage.getItem("token"));
+    const userToken = localStorage.getItem("token");
     if (userToken) {
       fetch("http://localhost:3000/v1/auth/me", {
         headers: {
@@ -32,8 +34,6 @@ function App() {
       })
         .then((res) => res.json())
         .then((userData) => {
-          console.log(userData);
-
           setIsLogin(true);
           setUserInfos(userData);
         });
